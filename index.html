@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+      .btnBox {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        width: 200px;
+        height: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .lb {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btnwidthanimation {
+        position: absolute;
+        top: 0;
+        left: 0%;
+        /* transform: translateX(-50%); */
+        transform: translateX(-50%);
+        height: 100%;
+        width: 0%;
+        background-color: transparent;
+        transition: background-color 1s, padding 1s, width 1s;
+      }
+      .btnwidthanimationActive {
+        background-color: rgba(203, 203, 203, 0.418);
+        width: 50%;
+        height: 100%;
+        padding: 40%;
+        left: 50%;
+      }
+      .btnwidthanimation.btnwidthanimationRightActive {
+        background-color: rgba(203, 203, 203, 0.418);
+
+        width: 20%;
+        padding: 100%;
+        left: 100%;
+      }
+      .btnwidthanimation.btnwidthanimationLeftActive {
+        background-color: rgba(203, 203, 203, 0.418);
+
+        width: 20%;
+        padding: 100%;
+        left: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btnBox">
+      <div class="lb">
+        <label class="label">click me</label>
+      </div>
+      <div class="btnwidthanimation"></div>
+    </div>
+    <script>
+      let btn = document.querySelector(".btnBox");
+      let animationbox = document.querySelector(".btnwidthanimation");
+
+      btn.addEventListener("click", (e) => {
+        let rect = btn.getBoundingClientRect();
+        let x = e.clientX - rect.left; // Get X position within the button
+        let btnWidth = rect.width;
+
+        if (x < btnWidth / 3) {
+          animationbox.classList.add("btnwidthanimationLeftActive");
+        } else if (x > (btnWidth * 2) / 3) {
+          animationbox.classList.add("btnwidthanimationRightActive");
+        } else {
+          animationbox.classList.add("btnwidthanimationActive");
+        }
+        setTimeout(() => {
+          animationbox.classList.remove("btnwidthanimationActive");
+          animationbox.classList.remove("btnwidthanimationRightActive");
+          animationbox.classList.remove("btnwidthanimationLeftActive");
+          console.log("remove");
+        }, 1000);
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        animationbox.classList.remove("btnwidthanimationActive");
+        animationbox.classList.remove("btnwidthanimationRightActive");
+        animationbox.classList.remove("btnwidthanimationLeftActive");
+      });
+    </script>
+  </body>
+</html>
