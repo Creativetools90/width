@@ -12,15 +12,17 @@
         align-items: center;
         justify-content: center;
         margin: 0;
+        background-color: black;
       }
       .btnBox {
-        background-color: black;
+        background-color: rgb(29, 121, 212);
         color: white;
         padding: 10px;
         width: 200px;
         height: 20px;
         position: relative;
         overflow: hidden;
+        border-radius: 10px;
       }
       .lb {
         width: 100%;
@@ -37,7 +39,7 @@
         position: absolute;
         top: 0;
         left: 0%;
-        /* transform: translateX(-50%); */
+        right: 0%;
         transform: translateX(-50%);
         height: 100%;
         width: 0%;
@@ -94,7 +96,6 @@
           animationbox.classList.remove("btnwidthanimationActive");
           animationbox.classList.remove("btnwidthanimationRightActive");
           animationbox.classList.remove("btnwidthanimationLeftActive");
-          console.log("remove");
         }, 1000);
       });
 
